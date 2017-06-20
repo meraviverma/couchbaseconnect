@@ -41,12 +41,13 @@ public class Listadd {
 		
 		System.out.println(collect);
 		
-		list.stream()
+		List<Object> listage =list.stream()
 				.filter(p1->p1.age<50)
-				.forEach(System.out::println);
+				//.forEach(System.out::println);
+				.collect(Collectors.toList());
 //				.findAny()
 //				.orElse(null);
-		//System.out.println(mylist);
+		System.out.println(listage);
 		
 		
 		List<Integer> collectage= list.stream()
