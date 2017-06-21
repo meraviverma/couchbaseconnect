@@ -1,0 +1,36 @@
+Problem set 1. retriving a nested array
+structure of document:
+---------------------------------
+{
+  "docid":"000",
+  "countries": [
+    {
+      "countr": [
+        {
+          "id": "US",
+          "zip": "001"
+        },
+        {
+          "id": "UK",
+          "zip": "002"
+        }
+      ]
+    }
+  ]
+}
+
+query:
+
+select f.zip from default 
+unnest countries as c
+unnest c.countr as f
+
+output:
+[
+  {
+    "zip": "001"
+  },
+  {
+    "zip": "002"
+  }
+]
