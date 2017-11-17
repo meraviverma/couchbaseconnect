@@ -34,3 +34,56 @@ output:
     "zip": "002"
   }
 ]
+
+Problem set 2. retriving a nested array
+structure of document:
+---------------------------------
+{  
+   "country":[  
+      {  
+         "states":[  
+            {  
+               "towns":[  
+                  {  
+                     "adresses":[  
+                        "10",
+                        "20",
+                        "30",
+                        "40"
+                     ]
+                  }
+               ]
+            },
+            {  
+               "towns":[  
+                  {  
+                     "adresses":[  
+                        "100",
+                        "200",
+                        "300",
+                        "400"
+                     ]
+                  }
+               ]
+            }
+         ]
+      }
+   ]
+}
+
+query:
+select RAW ARRAY_FLATTEN(array_agg(g.adresses),1) from default unnest country as c unnest c.states as f unnest f.towns as g
+
+output:
+[
+  [
+    "10",
+    "20",
+    "30",
+    "40",
+    "100",
+    "200",
+    "300",
+    "400"
+  ]
+]
